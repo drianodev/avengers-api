@@ -40,7 +40,6 @@ alter table avenger add constraint UK_5r88eemotwgru6k0ilqb2ledh unique (nick);
 
 - application.yaml
 - application-dev.yaml
-- application-heroku.yaml
 
 ```yaml
 spring:
@@ -120,24 +119,7 @@ spring:
     show-sql: true
 ```
 
-```yaml
-spring:
-  profiles:
-    active: heroku
-  jackson:
-    serialization:
-      indent-output: true
-  datasource:
-    type: com.zaxxer.hikari.HikariDataSource
-    url: jdbc:postgresql://${HOST}/${DB_NAME}
-    username: ${DB_USER}
-    password: ${DB_PASSWORD}
-  jpa:
-    database-platform: org.hibernate.dialect.PostgreSQLDialect
-    show-sql: false
-```
-
-## Dcoker
+## Docker
 
 ### Environment Config
 
@@ -191,17 +173,6 @@ networks:
 
 - Start API
 ```sh
-./mvnw spring-boot:run -Dspring-boot.run.profiles=dev -Dspring-boot.run.jvmArguments="-Xmx256m -Xms128m" -Dspring-boot.run.arguments="'--DB_USER=dio.avenger' '--DB_PASSWORD=dio.avenger' '--DB_NAME=avengers'"
-``` 
-
-## Heroku
-
-- Criar app
-- Linkar com Github
-- Setar vairáveis de ambiente
-
-### Procfile
-
-```text
-web: java -XX:+UnlockExperimentalVMOptions -XX:+UseCGroupMemoryLimitForHeap $JAVA_OPTS -Dserver.port=$PORT -Dspring.profiles.active=heroku -jar target/*.jar
+./mvnw spring-boot:run -Dspring-boot.run.profiles=dev -Dspring-boot.run.jvmArguments="-Xmx256m -Xms128m" -Dspring-boot.run.arguments="'--DB_USER=adm' '--DB_PASSWORD=adm123' '--DB_NAME=avengers'"
 ```
+
